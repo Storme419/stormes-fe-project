@@ -1,42 +1,87 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.app {
+  background-color: rgb(176, 251, 252);
+  border: 2px solid yellow;
+  padding:10px;
+  margin: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position:fixed;
+  padding-top: 60px;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  position: fixed;
+  background: white;
+  padding: 10px 0;
+  color: black;
+  top: 0;
+  z-index: 1;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  max-width: 80px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  position: fixed;        
+  background: rgb(170, 127, 127);
+  padding: 10px 0;
+  color: black;
+  margin-right: 100px;
+  right: 0;
+  margin-top: 80px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
-.card {
-  padding: 2em;
+.nav-buttons button {
+  margin-bottom: 10px;
+  padding: 15px 20px;
 }
 
-.read-the-docs {
-  color: #888;
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 50%;
+  background-color: rgb(255, 255, 255);
+  margin-left: 15%;
+  margin-top: 80px;
+  padding: 10px;
+}
+
+.articleCard {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border: 2px solid black;
+  padding: 20px;
+  margin: 10px;
+}
+
+.articleCardImg {
+  max-width: 100%;
+}
+
+#loading-msg {
+  margin-top: 100px;
 }
