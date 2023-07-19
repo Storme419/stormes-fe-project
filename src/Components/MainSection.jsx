@@ -22,7 +22,7 @@ const MainSection = () => {
         <main>
             <Routes>
                 <Route path="/" element={<Home articles={articles}/>} />
-                <Route path="/articles/:id" element={<ArticlePage articles={articles}/>} />
+                <Route path="/articles/:id" element={<ArticlePage />} />
             </Routes>
         </main>
     
