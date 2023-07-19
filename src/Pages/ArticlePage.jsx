@@ -15,7 +15,7 @@ const ArticlePage = () => {
             setLoading(false)
         }).catch(console.log)
     }, [])
-console.log(currentArticle)
+
     function findTimeSince(originalDate){
         const oldDate = new Date(originalDate)
         return formatDistanceToNow(oldDate, {addSuffix: true})
