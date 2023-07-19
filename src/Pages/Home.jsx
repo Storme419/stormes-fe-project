@@ -1,5 +1,4 @@
 import React from 'react'
-import {useState} from 'react'
 import ArticleCard from '../Components/ArticleCard'
 
 const Home = ({articles}) => {
@@ -14,6 +13,7 @@ const Home = ({articles}) => {
                 article_img_url={article_img_url}
                 comment_count={comment_count}
                 votes={votes}
+                article_id={article_id}
                 />
             })}
         </ul>
