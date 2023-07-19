@@ -95,6 +95,14 @@ main {
   margin: 10px;
 }
 
+.commentCard {
+  border: 2px solid black;
+  padding: 20px;
+  margin: 10px;
+  margin-left: 0%;
+  margin-right: 10%;
+}
+
 @media (min-width: 768px) {
   .nav {
     display: flex;
