@@ -24,21 +24,14 @@ const Nav = ({setCurrentTopic}) => {
             <h2>This is the nav</h2>
             <div className='nav-buttons'>
                 <button className="btns" key='all' onClick={redirect}>all</button>
-
                 {topics.map(({slug}) => {
                 return (
                 <button className="btns" key={slug} onClick={redirect}>{slug}</button>
                 )
             })}
             </div>
-            
         </aside>
     )
-
-    return <aside className="nav">
-        <h2>This is the nav</h2>
-{/*          */}
-    </aside>
 }
 
 export default Nav

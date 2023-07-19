@@ -1,6 +1,7 @@
-import {useEffect, useState} from 'react'
 import Home from '../Pages/Home'
+import ArticlePage from '../Pages/ArticlePage'
 import { getArticles } from '../api'
+import {useEffect, useState} from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 const MainSection = () => {
@@ -21,6 +22,7 @@ const MainSection = () => {
         <main>
             <Routes>
                 <Route path="/" element={<Home articles={articles}/>} />
+                <Route path="/articles/:id" element={<ArticlePage />} />
             </Routes>
         </main>
     
