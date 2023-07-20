@@ -12,6 +12,10 @@ const CommentSection = ({id}) => {
         .then((res) => {
             setArticleComments(res)
             setLoading(false)
+        }).catch((er) => {
+            console.log(er)
+            setArticleComments([])
+            setLoading(false)
         })
     }, [id])
 
@@ -19,7 +23,7 @@ const CommentSection = ({id}) => {
         const oldDate = new Date(originalDate)
         return formatDistanceToNow(oldDate, {addSuffix: true})
     }
- 
+
     return loading 
     ? <h2 id='loading-msg'>Loading comments...</h2> : 
     
