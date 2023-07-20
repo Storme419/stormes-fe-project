@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { formatDistanceToNow } from "date-fns"
-import { getArticleById, getCommentsByArticleId } from "../api"
-import CommentCard  from "../Components/CommentCard"
-
-const Comments = ({ children }) => (
-    <section>
-      {children}
-    </section>
-  );
+import { getArticleById } from "../api"
+import CommentSection from "../Components/CommentSection"
 
 const ArticlePage = () => {
     const {id} = useParams()
     const [currentArticle, setCurrentArticle] = useState({})
-    const [articleComments, setArticleComments] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -22,15 +15,7 @@ const ArticlePage = () => {
             setCurrentArticle(res)
             setLoading(false)
         }).catch(console.log)
-    }, [])
-
-    useEffect(() => {
-        getCommentsByArticleId(id)
-        .then((res) => {
-            setArticleComments(res)
-            
-        })
-    }, [])
+    }, [id])
 
     function findTimeSince(originalDate){
         const oldDate = new Date(originalDate)
@@ -50,20 +35,8 @@ const ArticlePage = () => {
             <p>Votes: {currentArticle.votes} </p>
             <p>Tags: {currentArticle.topic}</p> 
             <p>{currentArticle.body}</p>
-            <p>{articleComments.length} comments</p>
         </article>
-        <Comments>
-        <ul className='comment_list'>
-            {(articleComments.sort((a,b) => b.votes - a.votes)).map(({author, body, created_at, votes, comment_id}) => {
-                return <CommentCard key={comment_id}
-                author={author}
-                body={body}
-                created_at={findTimeSince(created_at)}
-                votes={votes}
-                />
-            })}
-        </ul>
-        </Comments>
+        <CommentSection id={id} />
     </section>
 
     
