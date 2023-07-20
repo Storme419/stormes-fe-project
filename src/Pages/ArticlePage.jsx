@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { formatDistanceToNow } from "date-fns"
 import { getArticleById } from "../api"
+import CommentSection from "../Components/CommentSection"
 
 const ArticlePage = () => {
     const {id} = useParams()
@@ -14,7 +15,7 @@ const ArticlePage = () => {
             setCurrentArticle(res)
             setLoading(false)
         }).catch(console.log)
-    }, [])
+    }, [id])
 
     function findTimeSince(originalDate){
         const oldDate = new Date(originalDate)
@@ -24,16 +25,21 @@ const ArticlePage = () => {
     return loading 
     ? <h2 id='loading-msg'>Loading...</h2> : 
     
-    <section className="article">
-        <h2>Article Page</h2>
-        <h3>{currentArticle.title}</h3>
-        <h4>By {currentArticle.author}</h4>
-        <img className="articleImg" src={currentArticle.article_img_url} alt={currentArticle.title} />
-        <p>Created {findTimeSince(currentArticle.created_at)}</p>
-        <p>Votes: {currentArticle.votes} </p>
-        <p>Tags: {currentArticle.topic}</p> 
-        <p>{currentArticle.body}</p>
+    <section>
+        <article className="article">
+            <h2>Article Page</h2>
+            <h3>{currentArticle.title}</h3>
+            <h4>By {currentArticle.author}</h4>
+            <img className="articleImg" src={currentArticle.article_img_url} alt={currentArticle.title} />
+            <p>Created {findTimeSince(currentArticle.created_at)}</p>
+            <p>Votes: {currentArticle.votes} </p>
+            <p>Tags: {currentArticle.topic}</p> 
+            <p>{currentArticle.body}</p>
+        </article>
+        <CommentSection id={id} />
     </section>
+
+    
 }
 
 export default ArticlePage

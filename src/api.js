@@ -24,3 +24,10 @@ export const getArticleById = (id) => {
         return res.data.article
     })
 }
+
+export const getCommentsByArticleId = (id) => {
+    return api.get(`/articles/${id}/comments`)
+    .then((res) => {
+        return res.data.comment
+    })
+}
