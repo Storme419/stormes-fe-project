@@ -21,7 +21,7 @@ const MainSection = ({user}) => {
     
         <main>
             <Routes>
-                <Route path="/" element={<Home articles={articles}/>} />
+                <Route path="/:topic" element={<Home articles={articles}/>} />
                 <Route path="/articles/:id" element={<ArticlePage user={user}/>} />
             </Routes>
         </main>

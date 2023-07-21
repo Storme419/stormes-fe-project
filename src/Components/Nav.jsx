@@ -2,9 +2,8 @@ import {Link} from 'react-router-dom'
 import { getTopics } from '../api'
 import { useEffect, useState } from 'react'
 
-const Nav = ({setCurrentTopic}) => {
+const Nav = ({}) => {
     const [topics, setTopics] = useState([])
-
 
     useEffect(() => {
         getTopics()
@@ -17,14 +16,16 @@ const Nav = ({setCurrentTopic}) => {
         <aside className='nav'>
             <h2>This is the nav</h2>
             <div className='nav-buttons'>
-                <Link to={`/`}>
-                <button className="btns" key='all' >all</button>
+                <Link to={`/home`}>
+                    <button className='btns' key='home'>home</button>
+                </Link>
                 {topics.map(({slug}) => {
                     return (
-                        <button className="btns" key={slug} >{slug}</button>
+                        <Link to={`/${slug}`} key={slug}>
+                            <button className="btns" key={slug} >{slug}</button>
+                        </Link>
                     )
-                })}
-                </Link>
+                })} 
             </div>
         </aside>
     )
