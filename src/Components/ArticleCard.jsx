@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
 const ArticleCard = ({title, article_img_url, comment_count, votes, article_id}) => {
@@ -9,8 +9,8 @@ const ArticleCard = ({title, article_img_url, comment_count, votes, article_id})
                 <p>{title}</p>
                 <img className="articleImg" src={article_img_url} alt={title} />
             </Link>
-            
-            <p>Comment Count: {comment_count}   Votes: {votes}</p>
+            <p>Votes: {votes}</p>
+            <p>Comments: {comment_count}</p>
         </div>
     )
 }

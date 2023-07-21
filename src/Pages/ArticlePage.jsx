@@ -3,11 +3,14 @@ import { useParams } from "react-router-dom"
 import { formatDistanceToNow } from "date-fns"
 import { getArticleById } from "../api"
 import CommentSection from "../Components/CommentSection"
+import { patchVotes } from "../api"
 
 const ArticlePage = () => {
     const {id} = useParams()
     const [currentArticle, setCurrentArticle] = useState({})
     const [loading, setLoading] = useState(true)
+    const [userVotes, setUserVotes] = useState(0)
+    const [isError, setIsError] = useState(false)
 
     useEffect(() => {
         getArticleById(id)
@@ -21,6 +24,17 @@ const ArticlePage = () => {
         const oldDate = new Date(originalDate)
         return formatDistanceToNow(oldDate, {addSuffix: true})
     }
+
+    const handleClick = () => {
+        setUserVotes((userVotes) => {
+            return userVotes === 0 ?  userVotes + 1 : userVotes - 1
+        })
+        patchVotes(id, userVotes).catch((err) => {
+            console.log(err)
+            setIsError(true)
+            setUserVotes(null)
+        })
+    }
     
     return loading 
     ? <h2 id='loading-msg'>Loading...</h2> : 
@@ -32,7 +46,10 @@ const ArticlePage = () => {
             <h4>By {currentArticle.author}</h4>
             <img className="articleImg" src={currentArticle.article_img_url} alt={currentArticle.title} />
             <p>Created {findTimeSince(currentArticle.created_at)}</p>
-            <p>Votes: {currentArticle.votes} </p>
+            <p>{currentArticle.votes + userVotes}</p>
+            <button aria-label="Like this article" 
+            onClick={handleClick}>{userVotes === 0 ? '♡' : userVotes === 1 ? '❤️' : setUserVotes(0) && '♡'}</button>
+            {isError ? <p>Something went wrong! Please try again</p> : null}
             <p>Tags: {currentArticle.topic}</p> 
             <p>{currentArticle.body}</p>
         </article>

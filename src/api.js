@@ -31,3 +31,13 @@ export const getCommentsByArticleId = (id) => {
         return res.data.comment
     })
 }
+
+export const patchVotes = (id, userVotes) => {
+    const patchRequestBody = {
+        inc_votes: userVotes === 0 ? 1 : -1
+    }
+    return api.patch(`/articles/${id}`, patchRequestBody)
+    .then((res) => {
+        return res.data.article
+    })
+}
