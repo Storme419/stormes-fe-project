@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react"
 import { formatDistanceToNow } from "date-fns"
 import { getCommentsByArticleId } from "../api"
 import CommentCard  from "./CommentCard"
+import CommentForm from "./CommentForm"
 
-const CommentSection = ({id}) => {
+const CommentSection = ({id, user}) => {
     const [articleComments, setArticleComments] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -29,9 +30,10 @@ const CommentSection = ({id}) => {
     
     articleComments.length === 0 ? <h2>No comments yet!</h2> :
     <div>
+        <CommentForm id={id} user={user} setArticleComments={setArticleComments}/>
         <p>{articleComments.length} comments</p>
         <ul className='comment_list'>
-            {(articleComments.sort((a,b) => b.votes - a.votes)).map(({author, body, created_at, votes, comment_id}) => {
+            {articleComments.map(({author, body, created_at, votes, comment_id}) => {
                 return <CommentCard key={comment_id}
                 author={author}
                 body={body}
