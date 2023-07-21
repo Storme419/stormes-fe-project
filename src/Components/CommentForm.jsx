@@ -4,6 +4,7 @@ import { postComment } from "../api"
 const CommentForm = ({id, user, setArticleComments}) => {
     const [newComment, setNewComment] = useState("")
     const [body, setBody] = useState("")
+    const [isError, setIsError] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -13,9 +14,12 @@ const CommentForm = ({id, user, setArticleComments}) => {
                 return[postedComment, ...currentComments]
             })
             setBody("")
+            setIsError(false)
         })
         .catch((er) => {
             console.log(er)
+            setIsError(true)
+            
         })
     }
 
@@ -30,6 +34,7 @@ const CommentForm = ({id, user, setArticleComments}) => {
             }} required
             />
             <button>Submit</button>
+        {    isError ? <p>Unable to post Comment, please try again later</p> : null}
         </form>
     )
 }

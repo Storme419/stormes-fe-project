@@ -33,7 +33,7 @@ const CommentSection = ({id, user}) => {
         <CommentForm id={id} user={user} setArticleComments={setArticleComments}/>
         <p>{articleComments.length} comments</p>
         <ul className='comment_list'>
-            {(articleComments.sort((a,b) => b.votes - a.votes)).map(({author, body, created_at, votes, comment_id}) => {
+            {articleComments.map(({author, body, created_at, votes, comment_id}) => {
                 return <CommentCard key={comment_id}
                 author={author}
                 body={body}

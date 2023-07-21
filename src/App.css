@@ -44,7 +44,7 @@ body {
   color: black;
   margin-right: 100px;
   top: 30px;
-  margin-top: 85px;
+  margin-top: 70px;
 }
 
 .nav-buttons {
@@ -101,6 +101,15 @@ main {
   margin: 10px;
   margin-left: 0%;
   margin-right: 10%;
+}
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid black;
+  margin: 10px;
 }
 
 @media (min-width: 768px) {
