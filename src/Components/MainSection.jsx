@@ -4,7 +4,7 @@ import { getArticles } from '../api'
 import {useEffect, useState} from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-const MainSection = () => {
+const MainSection = ({user}) => {
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -22,7 +22,7 @@ const MainSection = () => {
         <main>
             <Routes>
                 <Route path="/" element={<Home articles={articles}/>} />
-                <Route path="/articles/:id" element={<ArticlePage />} />
+                <Route path="/articles/:id" element={<ArticlePage user={user}/>} />
             </Routes>
         </main>
     

@@ -7,12 +7,13 @@ import MainSection from './Components/MainSection'
 
 function App() {
   const [currentTopic, setCurrentTopic] = useState([])
+  const [user, setUser] =useState('weegembump')
 
   return (
     <div className='app'>
       <Header />
       <Nav setCurrentTopic={setCurrentTopic}/>
-      <MainSection />
+      <MainSection user={user}/>
     </div>
   )
 }

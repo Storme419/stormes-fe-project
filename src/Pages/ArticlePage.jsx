@@ -5,7 +5,7 @@ import { getArticleById } from "../api"
 import CommentSection from "../Components/CommentSection"
 import { patchVotes } from "../api"
 
-const ArticlePage = () => {
+const ArticlePage = ({user}) => {
     const {id} = useParams()
     const [currentArticle, setCurrentArticle] = useState({})
     const [loading, setLoading] = useState(true)
@@ -53,7 +53,7 @@ const ArticlePage = () => {
             <p>Tags: {currentArticle.topic}</p> 
             <p>{currentArticle.body}</p>
         </article>
-        <CommentSection id={id} />
+        <CommentSection id={id} user={user} />
     </section>
 
     
