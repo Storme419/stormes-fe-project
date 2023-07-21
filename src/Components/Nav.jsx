@@ -1,16 +1,10 @@
-import {Link, useNavigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { getTopics } from '../api'
 import { useEffect, useState } from 'react'
 
 const Nav = ({setCurrentTopic}) => {
     const [topics, setTopics] = useState([])
-    const navigate = useNavigate()
 
-    function redirect (btns){
-        const topicName = btns.target.innerText
-        setCurrentTopic(topicName)
-        navigate('/')
-    }
 
     useEffect(() => {
         getTopics()
@@ -23,12 +17,14 @@ const Nav = ({setCurrentTopic}) => {
         <aside className='nav'>
             <h2>This is the nav</h2>
             <div className='nav-buttons'>
-                <button className="btns" key='all' onClick={redirect}>all</button>
+                <Link to={`/`}>
+                <button className="btns" key='all' >all</button>
                 {topics.map(({slug}) => {
-                return (
-                <button className="btns" key={slug} onClick={redirect}>{slug}</button>
-                )
-            })}
+                    return (
+                        <button className="btns" key={slug} >{slug}</button>
+                    )
+                })}
+                </Link>
             </div>
         </aside>
     )

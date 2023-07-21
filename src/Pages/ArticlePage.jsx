@@ -32,7 +32,7 @@ const ArticlePage = () => {
             <h4>By {currentArticle.author}</h4>
             <img className="articleImg" src={currentArticle.article_img_url} alt={currentArticle.title} />
             <p>Created {findTimeSince(currentArticle.created_at)}</p>
-            <p>Votes: {currentArticle.votes} </p>
+            <p>❤️: {currentArticle.votes} </p>
             <p>Tags: {currentArticle.topic}</p> 
             <p>{currentArticle.body}</p>
         </article>
