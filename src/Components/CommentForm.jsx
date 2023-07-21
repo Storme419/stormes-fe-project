@@ -2,11 +2,13 @@ import React, { useState } from "react"
 import { postComment } from "../api"
 
 const CommentForm = ({id, user, setArticleComments}) => {
-    const [newComment, setNewComment] = useState("")
     const [body, setBody] = useState("")
     const [isError, setIsError] = useState(false)
+    const [isPosted, setIsPosted] = useState(false)
+    const [isPending, setIsPending] = useState(false)
 
     const handleSubmit = (e) => {
+        setIsPending(true)
         e.preventDefault()
         postComment(id, user, body)
         .then((postedComment) => {
@@ -15,11 +17,13 @@ const CommentForm = ({id, user, setArticleComments}) => {
             })
             setBody("")
             setIsError(false)
+            setIsPosted(true)
+            setIsPending(false)
         })
         .catch((er) => {
             console.log(er)
             setIsError(true)
-            
+            setIsPending(false)
         })
     }
 
@@ -33,8 +37,9 @@ const CommentForm = ({id, user, setArticleComments}) => {
                 setBody(e.target.value)
             }} required
             />
-            <button>Submit</button>
-        {    isError ? <p>Unable to post Comment, please try again later</p> : null}
+            <button disabled={isPending}>{isPending ? 'Submitting' : 'Submit'}</button>
+            {isPosted ? <p>Posted comment successfully!</p> : null}
+            {isError ? <p>Unable to post Comment, please try again later</p> : null}
         </form>
     )
 }
